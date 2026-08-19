@@ -1,0 +1,27 @@
+*{box-sizing:border-box}
+body{margin:0;background:#0d0b09;color:#d9cfbd;font-family:"Noto Serif SC","Songti SC",serif;line-height:2}
+#app{max-width:760px;margin:0 auto;padding:24px 16px 80px}
+header{text-align:center;border-bottom:1px solid #3a332a;padding-bottom:12px}
+h1{letter-spacing:12px;color:#e6cf9a;font-size:30px;margin:8px 0 0}
+.sub{color:#8d8375;letter-spacing:4px;font-size:13px;margin:4px 0 12px}
+.bar{display:flex;justify-content:center;gap:14px;align-items:center;flex-wrap:wrap;font-size:13px}
+.bar span{color:#c8a86a}
+button{background:#241b10;border:1px solid #5a4a2f;color:#e6cf9a;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:13px;letter-spacing:2px}
+button:hover{background:#3a2e1c}
+#story p{margin:0 0 1em;text-indent:2em}
+#story .sys{color:#8d8375;font-size:13px;text-indent:0;border-left:3px solid #3a332a;padding-left:10px}
+#story .get{color:#a8c686;text-indent:0}
+#story .err{color:#e7b7ae;text-indent:0}
+.choices{margin:18px 0;display:flex;flex-direction:column;gap:8px}
+.choices button{text-align:left;background:#1c1815;border-color:#3a332a;color:#d9cfbd;padding:10px 14px}
+.choices button:hover{border-color:#c8a86a;color:#e6cf9a}
+.choices .num{color:#c8a86a;margin-right:8px}
+.pwd{display:flex;gap:8px;margin:14px 0}
+.pwd input{flex:1;background:#0d0b0a;border:1px solid #3a332a;color:#e6cf9a;padding:10px 12px;border-radius:8px;font-size:16px;letter-spacing:6px;font-family:monospace;outline:none;text-transform:uppercase}
+.pwd input:focus{border-color:#c8a86a}
+#side{border-top:1px solid #3a332a;margin-top:28px;padding-top:14px;font-size:13px}
+#side h3{color:#c8a86a;letter-spacing:3px;font-size:13px;margin:10px 0 6px}
+#side ul{margin:0;padding-left:0;list-style:none}
+#side li{padding:4px 0;color:#d9cfbd}
+#side li.empty{color:#5a5348}
+.ending{text-align:center;border:2px solid #c8a86a;border-radius:10px;padding:18px;margin:20px 0;color:#e6cf9a;letter-spacing:2px}
