@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>午夜租约 · Midnight Lease</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 开场 -->
+    <div id="intro" class="overlay">
+        <div class="intro-author">会产生</div>
+        <div class="intro-box">
+            <h1>午夜租约</h1>
+            <p class="intro-sub">MIDNIGHT LEASE</p>
+            <p class="intro-text">你租下了一间便宜的小单间。<br>房东临走时塞给你一张皱巴巴的纸……<br>请在 <b>3:00</b> 之前，逃离这间房。</p>
+            <button id="btn-start" class="btn">开始游戏</button>
+            <p class="intro-tip">WASD / 方向键 移动 · E 互动 · ESC 关闭窗口</p>
+        </div>
+    </div>
+
+    <!-- HUD -->
+    <div id="hud">
+        <div id="clock">00:00</div>
+        <div id="lives">❤❤❤❤❤</div>
+        <div id="inventory"></div>
+    </div>
+
+    <!-- 消息提示 -->
+    <div id="message" class="hidden"></div>
+
+    <!-- 互动提示 -->
+    <div id="interact-tip" class="hidden">按 E 互动</div>
+
+    <!-- 游戏画布 -->
+    <div id="game-wrap">
+        <div id="game"></div>
+        <div id="darkness"></div>
+        <div id="red-pulse"></div>
+        <div id="author-tag">作者：会产生</div>
+    </div>
+
+    <!-- 生存守则（常驻） -->
+    <aside id="rules-board">
+        <h3>卧室生存守则</h3>
+        <ol>
+            <li>安全区域仅限床、书桌、床头柜、衣柜、矮柜。</li>
+            <li>阳台不属于安全区，玻璃门仅可拉开窄缝，禁止全力推开。</li>
+            <li>红色杂物堆禁止触碰、不要翻找。</li>
+            <li>洗衣机自行运转时，立刻上床，不要望向阳台。</li>
+            <li>洗衣机内可能有红布，请晒到晾衣架上。</li>
+            <li>不要暴力拉扯大门，门缝会透出红光。</li>
+            <li>凌晨两点后不要久坐书桌，不超过 20 分钟。</li>
+            <li>不要与玻璃门上的倒影对视。</li>
+            <li>3:00 前必须逃离，否则……</li>
+        </ol>
+    </aside>
+
+    <!-- 通用阅读面板（守则/日记/说明书） -->
+    <div id="panel" class="overlay hidden">
+        <div class="panel-box">
+            <h2 id="panel-title"></h2>
+            <div id="panel-body"></div>
+            <button class="btn btn-close" data-close="panel">合上</button>
+        </div>
+    </div>
+
+    <!-- 密码输入 -->
+    <div id="keypad" class="overlay hidden">
+        <div class="panel-box">
+            <h2>大门密码锁</h2>
+            <p id="keypad-hint" class="dim">四位数字密码</p>
+            <div id="keypad-display">_ _ _ _</div>
+            <div id="keypad-grid">
+                <button class="key" data-key="1">1</button>
+                <button class="key" data-key="2">2</button>
+                <button class="key" data-key="3">3</button>
+                <button class="key" data-key="4">4</button>
+                <button class="key" data-key="5">5</button>
+                <button class="key" data-key="6">6</button>
+                <button class="key" data-key="7">7</button>
+                <button class="key" data-key="8">8</button>
+                <button class="key" data-key="9">9</button>
+                <button class="key" data-key="clear">C</button>
+                <button class="key" data-key="0">0</button>
+                <button class="key" data-key="back">←</button>
+            </div>
+            <button class="btn btn-close" data-close="keypad">离开</button>
+        </div>
+    </div>
+
+    <!-- 结局 -->
+    <div id="ending" class="overlay hidden">
+        <div class="intro-box">
+            <h1 id="ending-title"></h1>
+            <p id="ending-text" class="intro-text"></p>
+            <button class="btn" onclick="location.reload()">重新开始</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
