@@ -62,8 +62,8 @@ body {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 440px;
-    padding: 48px 40px 32px;
+    max-width: 900px;
+    padding: 40px;
     background: rgba(17, 24, 39, 0.85);
     backdrop-filter: blur(16px);
     border: 1px solid var(--border);
@@ -73,29 +73,41 @@ body {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.8s ease, transform 0.8s ease;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
 }
 .card.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* ---- 文字头像 ---- */
+/* ---- 左右分栏 ---- */
+.card-left {
+    flex: 1;
+    min-width: 0;
+}
+.card-right {
+    flex: 1;
+    min-width: 0;
+    border-left: 1px solid var(--border);
+    padding-left: 40px;
+}
+
+/* ---- 图片头像 ---- */
 .avatar {
     width: 96px;
     height: 96px;
     margin: 0 auto 24px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    overflow: hidden;
     box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15), 0 0 40px rgba(124, 58, 237, 0.35);
 }
-.avatar-initials {
-    font-size: 42px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 1px;
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* ---- 文字 ---- */
@@ -183,8 +195,11 @@ body {
 
 /* ---- 游戏目录 ---- */
 .games {
-    margin: 20px 0 28px;
+    margin: 0;
     text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .games-title {
     font-size: 13px;
@@ -194,11 +209,13 @@ body {
     text-transform: uppercase;
     margin-bottom: 12px;
     padding-left: 4px;
+    text-align: center;
 }
 .games-grid {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 1;
 }
 .game-card {
     display: flex;
@@ -256,9 +273,16 @@ body {
 }
 
 /* ---- 响应式 ---- */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .card {
+        flex-direction: column;
+        gap: 24px;
         padding: 36px 24px 24px;
+    }
+    .card-right {
+        border-left: none;
+        padding-left: 0;
+        width: 100%;
     }
     .name { font-size: 24px; }
 }
