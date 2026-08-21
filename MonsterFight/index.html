@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勇者打怪</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-shell">
+        <header class="game-header">
+            <h1>勇者打怪</h1>
+            <p>像素风回合制战斗</p>
+        </header>
+
+        <main class="battlefield">
+            <section class="panel hero-panel">
+                <div class="pixel-avatar hero-avatar">勇</div>
+                <h2>勇者</h2>
+                <div class="bar-wrap">
+                    <span>生命</span>
+                    <div class="bar"><div id="player-hp-bar" class="bar-fill hp-fill"></div></div>
+                    <strong id="player-hp-text">100 / 100</strong>
+                </div>
+                <div class="stats">
+                    <div class="stat-item"><span>攻击</span><strong id="player-atk">12</strong></div>
+                    <div class="stat-item"><span>金币</span><strong id="player-gold">0</strong></div>
+                    <div class="stat-item"><span>药水</span><strong id="player-potion">3</strong></div>
+                </div>
+            </section>
+
+            <section class="panel monster-panel">
+                <div class="pixel-avatar monster-avatar">怪</div>
+                <h2 id="monster-name">史莱姆</h2>
+                <div class="bar-wrap">
+                    <span>生命</span>
+                    <div class="bar"><div id="monster-hp-bar" class="bar-fill monster-fill"></div></div>
+                    <strong id="monster-hp-text">45 / 45</strong>
+                </div>
+                <div class="stats">
+                    <div class="stat-item"><span>等级</span><strong id="monster-level">1</strong></div>
+                    <div class="stat-item"><span>攻击</span><strong id="monster-atk">6</strong></div>
+                    <div class="stat-item"><span>奖励</span><strong id="monster-reward">12</strong></div>
+                </div>
+            </section>
+        </main>
+
+        <section class="controls panel">
+            <button id="attack-btn">攻击</button>
+            <button id="heal-btn">喝药水</button>
+            <button id="upgrade-btn">升级攻击（30金币）</button>
+            <button id="restart-btn">重新开始</button>
+        </section>
+
+        <section class="log panel">
+            <h3>战斗日志</h3>
+            <div id="log-list" class="log-list"></div>
+        </section>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
