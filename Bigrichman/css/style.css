@@ -1,0 +1,508 @@
+/* ==================== 像素大富翁 · 全局样式 ==================== */
+
+:root {
+  --bg: #1a1a2e;
+  --bg-light: #16213e;
+  --panel: #0f3460;
+  --purple: #7b2ff7;
+  --purple-dark: #3d1478;
+  --cyan: #00d9c0;
+  --orange: #ff9f1c;
+  --yellow: #ffd60a;
+  --red: #e5383b;
+  --green: #00e676;
+  --blue: #2979ff;
+  --text: #e8e8e8;
+  --text-dim: #8a8a9e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  image-rendering: pixelated;
+  border-radius: 0 !important;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Press Start 2P', 'Microsoft YaHei', monospace;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+
+.hidden { display: none !important; }
+
+/* ==================== 像素组件 ==================== */
+
+.pixel-border {
+  border: 4px solid #000;
+  box-shadow:
+    inset -4px -4px 0 0 rgba(0, 0, 0, 0.35),
+    inset 4px 4px 0 0 rgba(255, 255, 255, 0.08),
+    6px 6px 0 0 rgba(0, 0, 0, 0.5);
+  background: var(--bg-light);
+}
+
+.pixel-btn {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 14px 24px;
+  background: var(--purple);
+  color: #fff;
+  border: 3px solid #000;
+  box-shadow: 0 5px 0 var(--purple-dark);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.05s, box-shadow 0.05s;
+}
+
+.pixel-btn:hover:not(:disabled) { filter: brightness(1.15); }
+
+.pixel-btn:active:not(:disabled) {
+  transform: translateY(5px);
+  box-shadow: 0 0 0 var(--purple-dark);
+}
+
+.pixel-btn:disabled {
+  background: #3a3a4a;
+  box-shadow: 0 5px 0 #1e1e28;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.pixel-btn.big { font-size: 16px; padding: 18px 36px; }
+.pixel-btn.small { font-size: 12px; padding: 10px 16px; }
+.pixel-btn.green { background: var(--green); box-shadow: 0 5px 0 #007a3d; color: #00331a; }
+.pixel-btn.gray { background: #5a5a6e; box-shadow: 0 5px 0 #2e2e3a; }
+.pixel-btn.orange { background: var(--orange); box-shadow: 0 5px 0 #9c5f00; color: #4a2e00; }
+.pixel-btn.blue { background: var(--blue); box-shadow: 0 5px 0 #0d47a1; }
+.pixel-btn.purple { background: var(--purple); box-shadow: 0 5px 0 var(--purple-dark); }
+
+/* ==================== 开始界面 ==================== */
+
+#start-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(123, 47, 247, 0.07) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(123, 47, 247, 0.07) 40px),
+    var(--bg);
+}
+
+.start-box {
+  padding: 48px 56px;
+  text-align: center;
+  max-width: 560px;
+  width: 92%;
+}
+
+.game-title {
+  font-size: 36px;
+  color: var(--yellow);
+  text-shadow: 4px 4px 0 #b8860b, 8px 8px 0 rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+  letter-spacing: 4px;
+}
+
+.game-subtitle {
+  font-size: 12px;
+  color: var(--cyan);
+  letter-spacing: 6px;
+  margin-bottom: 36px;
+}
+
+.start-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.start-row select {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 14px;
+  background: var(--panel);
+  color: var(--text);
+  border: 3px solid #000;
+  cursor: pointer;
+}
+
+.name-inputs { margin-bottom: 28px; }
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.name-color {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #000;
+  flex-shrink: 0;
+}
+
+.name-row input {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 12px;
+  width: 100%;
+  background: var(--panel);
+  color: var(--text);
+  border: 3px solid #000;
+  outline: none;
+}
+
+.name-row input:focus { border-color: var(--cyan); }
+
+.rules {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 3px dashed #333;
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 2.4;
+}
+
+/* ==================== 游戏界面布局 ==================== */
+
+#game-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 8px;
+  gap: 8px;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  flex-shrink: 0;
+}
+
+.header-title { font-size: 16px; color: var(--yellow); }
+.header-tip { font-size: 11px; color: var(--text-dim); }
+
+.game-main {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ==================== 棋盘 ==================== */
+
+.board-area {
+  position: relative;
+  padding: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, 100px);
+  grid-template-rows: repeat(9, 100px);
+  gap: 3px;
+  background: var(--bg);
+  padding: 3px;
+}
+
+.tile {
+  border: 3px solid #000;
+  background: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  padding: 3px;
+}
+
+.tile:hover { filter: brightness(1.3); }
+
+.tile-color {
+  width: 100%;
+  height: 12px;
+  border-bottom: 3px solid #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tile-name {
+  font-size: 11px;
+  line-height: 1.3;
+  word-break: break-all;
+  margin-top: 8px;
+}
+
+.tile-price { font-size: 11px; color: var(--yellow); margin-top: 3px; }
+.tile-icon { font-size: 28px; line-height: 1; }
+
+.tile-level {
+  font-size: 10px;
+  color: var(--yellow);
+  letter-spacing: -1px;
+  min-height: 11px;
+}
+
+.tile-owner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  border-top: 3px solid #000;
+}
+
+/* 特殊格子配色 */
+.tile-start { background: #1b4332; }
+.tile-chance { background: #3d2c8d; }
+.tile-shop { background: #7f4f24; }
+.tile-tax { background: #6d1a1a; }
+.tile-jail { background: #3a3a3a; }
+.tile-parking { background: #1d3557; }
+
+/* ==================== 棋子 ==================== */
+
+.tokens { position: absolute; inset: 0; pointer-events: none; }
+
+.token {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 3px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+  transition: left 0.2s linear, top 0.2s linear;
+  z-index: 10;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* ==================== 中央操作区 ==================== */
+
+.center-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  background: rgba(15, 52, 96, 0.92);
+  border: 4px solid #000;
+  padding: 24px 32px;
+  z-index: 5;
+}
+
+.dice-box { display: flex; gap: 20px; }
+
+.dice {
+  width: 72px;
+  height: 72px;
+  background: #f5f5f5;
+  border: 4px solid #000;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 8px;
+  gap: 3px;
+}
+
+.dice.rolling { animation: diceShake 0.1s infinite; }
+
+@keyframes diceShake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-2px, 2px) rotate(-8deg); }
+  50% { transform: translate(2px, -2px) rotate(8deg); }
+  75% { transform: translate(-2px, -2px) rotate(-4deg); }
+  100% { transform: translate(2px, 2px) rotate(4deg); }
+}
+
+.dot {
+  background: transparent;
+}
+
+.dot.on {
+  background: #1a1a1a;
+  border: 1px solid #000;
+}
+
+.action-row { display: flex; gap: 12px; }
+
+/* 格子详情提示 */
+.tile-tip {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  background: #000;
+  border: 3px solid var(--cyan);
+  padding: 12px 16px;
+  font-size: 11px;
+  line-height: 1.8;
+  white-space: nowrap;
+  z-index: 20;
+  color: var(--text);
+}
+
+/* ==================== 侧边信息栏 ==================== */
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 320px;
+  max-width: 420px;
+  min-height: 0;
+}
+
+.panel-box { padding: 16px; }
+
+.panel-title {
+  font-size: 12px;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #000;
+}
+
+.current-player {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 24px;
+}
+
+.cp-dot {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #000;
+  display: inline-block;
+}
+
+/* 玩家卡片 */
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 10px;
+  margin-bottom: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid transparent;
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+
+.player-card.active {
+  border-color: var(--yellow);
+  background: rgba(255, 214, 10, 0.12);
+}
+
+.player-card.bankrupt { opacity: 0.4; }
+
+.pc-color {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000;
+  flex-shrink: 0;
+}
+
+.pc-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-money { color: var(--yellow); }
+.pc-assets { color: var(--text-dim); font-size: 10px; }
+
+/* 日志 */
+.log-box { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+
+#log-panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  font-size: 11px;
+  line-height: 1.9;
+  padding-right: 6px;
+}
+
+#log-panel::-webkit-scrollbar { width: 10px; }
+#log-panel::-webkit-scrollbar-track { background: #000; }
+#log-panel::-webkit-scrollbar-thumb { background: var(--purple); border: 2px solid #000; }
+
+.log-line {
+  padding: 5px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+/* ==================== 弹窗 ==================== */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  padding: 40px 48px;
+  text-align: center;
+  min-width: 400px;
+  max-width: 560px;
+  animation: popupIn 0.15s steps(3);
+}
+
+@keyframes popupIn {
+  from { transform: scale(0.6); }
+  to { transform: scale(1); }
+}
+
+.modal-title {
+  font-size: 20px;
+  color: var(--yellow);
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+}
+
+.modal-body {
+  font-size: 13px;
+  line-height: 2.2;
+  margin-bottom: 28px;
+}
+
+.winner-text { font-size: 16px; line-height: 2.6; }
+
+.gameover-box {
+  background: var(--bg-light);
+  border-color: var(--yellow);
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大富翁</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========== 开始界面 ========== -->
+  <div id="start-screen" class="screen">
+    <div class="start-box pixel-border">
+      <h1 class="game-title">像素大富翁</h1>
+      <p class="game-subtitle">PIXEL MONOPOLY</p>
+
+      <div class="start-row">
+        <label>玩家数量</label>
+        <select id="player-count">
+          <option value="2">2 人</option>
+          <option value="3">3 人</option>
+          <option value="4">4 人</option>
+        </select>
+      </div>
+
+      <div id="name-inputs" class="name-inputs"></div>
+
+      <button id="btn-start" class="pixel-btn big">开始游戏</button>
+
+      <div class="rules">
+        <p>🎲 轮流掷骰，买地收租</p>
+        <p>💰 初始资金 ¥15000 · 过起点 +¥2000</p>
+        <p>💀 资金归零破产，活到最后即胜利</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 游戏界面 ========== -->
+  <div id="game-screen" class="screen hidden">
+    <header class="game-header pixel-border">
+      <span class="header-title">🎲 像素大富翁</span>
+      <span class="header-tip">点击格子查看详情</span>
+    </header>
+
+    <main class="game-main">
+      <!-- 棋盘区域 -->
+      <section class="board-area pixel-border">
+        <div id="board" class="board"></div>
+        <div id="tokens" class="tokens"></div>
+
+        <!-- 中央操作区 -->
+        <div class="center-panel">
+          <div class="dice-box">
+            <div id="dice1" class="dice"></div>
+            <div id="dice2" class="dice"></div>
+          </div>
+          <button id="btn-roll" class="pixel-btn">掷骰子</button>
+          <div class="action-row">
+            <button id="btn-buy" class="pixel-btn small green">购买</button>
+            <button id="btn-skip" class="pixel-btn small gray">放弃</button>
+          </div>
+          <div class="action-row">
+            <button id="btn-upgrade" class="pixel-btn small orange">升级</button>
+            <button id="btn-bail" class="pixel-btn small blue">保释</button>
+          </div>
+          <button id="btn-end-turn" class="pixel-btn small purple">结束回合</button>
+          <div id="tile-tip" class="tile-tip hidden"></div>
+        </div>
+      </section>
+
+      <!-- 侧边信息栏 -->
+      <aside class="side-panel">
+        <div class="panel-box pixel-border">
+          <div class="panel-title">当前回合</div>
+          <div id="current-player" class="current-player"></div>
+        </div>
+
+        <div class="panel-box pixel-border">
+          <div class="panel-title">玩家列表</div>
+          <div id="players-panel"></div>
+        </div>
+
+        <div class="panel-box pixel-border log-box">
+          <div class="panel-title">游戏日志</div>
+          <div id="log-panel"></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- ========== 通用弹窗 ========== -->
+  <div id="popup" class="modal hidden">
+    <div class="modal-box pixel-border">
+      <div id="popup-title" class="modal-title"></div>
+      <div id="popup-body" class="modal-body"></div>
+      <button id="popup-btn" class="pixel-btn">确定</button>
+    </div>
+  </div>
+
+  <!-- ========== 结束界面 ========== -->
+  <div id="gameover" class="modal hidden">
+    <div class="modal-box pixel-border gameover-box">
+      <div class="modal-title">🎉 游戏结束 🎉</div>
+      <div id="winner-text" class="modal-body winner-text"></div>
+      <button id="btn-restart" class="pixel-btn big">再来一局</button>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/board.js"></script>
+  <script src="js/players.js"></script>
+  <script src="js/dice.js"></script>
+  <script src="js/property.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
