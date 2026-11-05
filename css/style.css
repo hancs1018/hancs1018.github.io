@@ -5,7 +5,7 @@
     --text-dim: #9ca3af;
     --accent-1: #38bdf8;
     --accent-2: #a78bfa;
-    --border: rgba(148, 163, 184, 0.12);
+    --border: rgba(148, 163, 184, 0.15);
 }
 
 * {
@@ -14,17 +14,16 @@
     box-sizing: border-box;
 }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+html, body {
+    min-height: 100%;
     background: var(--bg);
     color: var(--text);
     font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-    padding: 24px;
-    overflow: hidden;
     position: relative;
+}
+
+body {
+    padding: 0;
 }
 
 /* ---- 背景光斑 ---- */
@@ -57,51 +56,63 @@ body {
     to   { transform: translate(60px, 40px) scale(1.15); }
 }
 
-/* ---- 名片卡片 ---- */
+/* ---- 主容器 ---- */
 .card {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
     width: 100%;
-    max-width: 900px;
-    padding: 40px;
+    max-width: 100%;
+    padding: 0;
     background: rgba(17, 24, 39, 0.85);
     backdrop-filter: blur(16px);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    text-align: center;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.8s ease, transform 0.8s ease;
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
 }
 .card.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* ---- 左右分栏 ---- */
-.card-left {
-    flex: 1;
-    min-width: 0;
+/* ---- 左上角站点头 ---- */
+.site-header {
+    padding: 16px 40px;
 }
-.card-right {
-    flex: 1;
-    min-width: 0;
-    border-left: 1px solid var(--border);
-    padding-left: 40px;
+.site-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent-1);
+    letter-spacing: 1px;
 }
 
-/* ---- 图片头像 ---- */
+/* ---- 个人信息区 ---- */
+.profile {
+    padding: 0 40px 16px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 头像 + 姓名 水平排列 */
+.profile-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
 .avatar {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 24px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15), 0 0 40px rgba(124, 58, 237, 0.35);
+    flex-shrink: 0;
 }
 .avatar-img {
     width: 100%;
@@ -110,37 +121,43 @@ body {
     display: block;
 }
 
-/* ---- 文字 ---- */
+.profile-info {
+    text-align: left;
+}
+
 .name {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     letter-spacing: 1px;
 }
 .title {
-    margin-top: 8px;
+    margin-top: 4px;
     font-size: 14px;
     color: var(--accent-1);
     letter-spacing: 2px;
 }
+
 .bio {
-    margin: 20px 0 28px;
+    margin: 8px auto 12px;
     font-size: 15px;
     line-height: 1.8;
     color: var(--text-dim);
+    max-width: 480px;
 }
 
 /* ---- 联系方式 ---- */
 .contact {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 28px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 .contact-item {
-    display: flex;
-    justify-content: space-between;
+    display: inline-flex;
     align-items: center;
-    padding: 12px 16px;
+    gap: 10px;
+    padding: 8px 16px;
     border: 1px solid var(--border);
     border-radius: 12px;
     text-decoration: none;
@@ -168,10 +185,10 @@ body {
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 .skill-tag {
-    padding: 6px 14px;
+    padding: 6px 18px;
     font-size: 13px;
     color: var(--accent-1);
     background: rgba(56, 189, 248, 0.08);
@@ -188,11 +205,12 @@ body {
 .achievements {
     display: flex;
     justify-content: center;
-    gap: 24px;
-    margin-bottom: 20px;
-    padding: 16px 0;
+    gap: 40px;
+    margin: 8px auto;
+    padding: 8px 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
+    max-width: 480px;
 }
 .achievement-item {
     display: flex;
@@ -201,7 +219,7 @@ body {
     gap: 4px;
 }
 .achievement-num {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
     -webkit-background-clip: text;
@@ -219,10 +237,10 @@ body {
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 24px;
+    margin-top: 8px;
 }
 .hobby-tag {
-    padding: 6px 14px;
+    padding: 6px 18px;
     font-size: 13px;
     color: var(--text-dim);
     background: rgba(255, 255, 255, 0.03);
@@ -236,35 +254,42 @@ body {
     transform: translateY(-2px);
 }
 
-/* ---- 游戏目录 ---- */
-.games {
+/* ---- 分隔线 ---- */
+.divider {
+    flex-shrink: 0;
+    border: none;
+    height: 1px;
+    background: var(--border);
     margin: 0;
-    text-align: left;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
 }
-.games-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-dim);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+
+/* ---- 作品区 ---- */
+.works {
+    flex: 1;
+    width: 100%;
+    padding: 28px 40px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.works-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 24px;
     padding-left: 4px;
-    text-align: center;
+    border-left: 4px solid var(--accent-1);
+    padding-left: 12px;
 }
 .games-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
 }
 .game-card {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 14px 16px;
+    padding: 18px 20px;
     border: 1px solid var(--border);
     border-radius: 14px;
     text-decoration: none;
@@ -277,8 +302,8 @@ body {
     transform: translateY(-2px);
 }
 .game-icon {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -287,17 +312,17 @@ body {
     flex-shrink: 0;
 }
 .game-icon svg {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     color: var(--accent-1);
 }
 .game-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
 }
 .game-name {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text);
 }
@@ -311,21 +336,17 @@ body {
     font-size: 12px;
     color: var(--text-dim);
     opacity: 0.7;
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
+    padding: 20px 40px;
+    text-align: center;
 }
 
 /* ---- 响应式 ---- */
 @media (max-width: 768px) {
-    .card {
-        flex-direction: column;
-        gap: 24px;
-        padding: 36px 24px 24px;
-    }
-    .card-right {
-        border-left: none;
-        padding-left: 0;
-        width: 100%;
-    }
-    .name { font-size: 24px; }
+    .site-header { padding: 16px 24px; }
+    .profile { padding: 0 24px 16px; }
+    .works { padding: 24px 24px 32px; }
+    .profile-main { gap: 16px; }
+    .avatar { width: 56px; height: 56px; }
+    .name { font-size: 26px; }
+    .games-grid { grid-template-columns: 1fr; }
 }

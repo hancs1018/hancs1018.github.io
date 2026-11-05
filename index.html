@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人名片</title>
+    <title>会产生的窝</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -12,19 +12,26 @@
     <div class="glow glow-2"></div>
 
     <main class="card">
-        <!-- 左栏：个人介绍 -->
-        <div class="card-left">
-            <!-- 头像 -->
-            <div class="avatar">
-                <img src="/1.jpg" alt="头像" class="avatar-img">
+        <!-- 左上角站点头 -->
+        <header class="site-header">
+            <span class="site-title">🏠 会产生的窝</span>
+        </header>
+
+        <!-- 上半部分：个人信息 -->
+        <section class="profile">
+            <!-- 头像 + 姓名水平排列 -->
+            <div class="profile-main">
+                <div class="avatar">
+                    <img src="/1.jpg" alt="头像" class="avatar-img">
+                </div>
+                <div class="profile-info">
+                    <h1 class="name">会产生</h1>
+                    <p class="title">初中生 / 游戏爱好者</p>
+                </div>
             </div>
 
-            <!-- 名字与身份 -->
-            <h1 class="name">会产生</h1>
-            <p class="title">初中生 / 游戏爱好者</p>
-
             <!-- 一句话介绍 -->
-            <p class="bio">这是一个人，可以试玩一下我的游戏（在右边）。</p>
+            <p class="bio">这是一个人，可以试玩一下我的游戏。</p>
 
             <!-- 联系方式 -->
             <div class="contact">
@@ -62,64 +69,75 @@
                 <span class="hobby-tag">爱听音乐</span>
                 <span class="hobby-tag">爱刷视频</span>
             </div>
+        </section>
 
-            <footer class="footer">© 2026 会产生 · 保持热爱，奔赴山海</footer>
-        </div>
+        <!-- 分隔线 -->
+        <hr class="divider">
 
-        <!-- 右栏：游戏目录 -->
-        <div class="card-right">
-            <section class="games">
-                <h2 class="games-title">游戏目录</h2>
-                <div class="games-grid">
-                    <a class="game-card" href="Chronicle-Sealed/index.html">
-                        <div class="game-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                        </div>
-                        <div class="game-info">
-                            <span class="game-name">编年史封印</span>
-                            <span class="game-desc">策略文字冒险</span>
-                        </div>
-                    </a>
-                    <a class="game-card" href="Midnight-Lease/index.html">
-                        <div class="game-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
-                        </div>
-                        <div class="game-info">
-                            <span class="game-name">午夜租约</span>
-                            <span class="game-desc">密室逃脱 · 规则怪谈</span>
-                        </div>
-                    </a>
-                    <a class="game-card" href="Bigrichman/index.html">
-                        <div class="game-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                        </div>
-                        <div class="game-info">
-                            <span class="game-name">大富翁</span>
-                            <span class="game-desc">大富翁 · 策略经营</span>
-                        </div>
-                    </a>
-                    <a class="game-card" href="MonsterFight/index.html">
-                        <div class="game-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.31 2l5.74 5.74-2.12 2.12-1.41-1.41-3.54 3.53 1.42 1.42-2.12 2.12-5.74-5.74L14.31 2zm-8.62 8.62l5.69 5.69-4.95 4.95H2v-4.43l3.69-6.21z"/></svg>
-                        </div>
-                        <div class="game-info">
-                            <span class="game-name">勇者打怪</span>
-                            <span class="game-desc">像素战斗 · 回合闯关</span>
-                        </div>
-                    </a>
-                    <a class="game-card" href="MonsterWorld/index.html">
-                        <div class="game-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h18v14H3V5zm2 2v10h14V7H5zm2 2h3v3H7V9zm5 0h5v2h-5V9zm0 4h5v2h-5v-2z"/></svg>
-                        </div>
-                        <div class="game-info">
-                            <span class="game-name">像素打怪地图</span>
-                            <span class="game-desc">地图探索 · 移动打怪</span>
-                        </div>
-                    </a>
-                    <!-- 在此处添加更多游戏卡片 -->
-                </div>
-            </section>
-        </div>
+        <!-- 下半部分：作品 -->
+        <section class="works">
+            <h2 class="works-title">作品</h2>
+            <div class="games-grid">
+                <a class="game-card" href="Chronicle-Sealed/index.html">
+                    <div class="game-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-name">编年史封印</span>
+                        <span class="game-desc">策略文字冒险</span>
+                    </div>
+                </a>
+                <a class="game-card" href="Midnight-Lease/index.html">
+                    <div class="game-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-name">午夜租约</span>
+                        <span class="game-desc">密室逃脱 · 规则怪谈</span>
+                    </div>
+                </a>
+                <a class="game-card" href="Bigrichman/index.html">
+                    <div class="game-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-name">大富翁</span>
+                        <span class="game-desc">大富翁 · 策略经营</span>
+                    </div>
+                </a>
+                <a class="game-card" href="MonsterFight/index.html">
+                    <div class="game-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.31 2l5.74 5.74-2.12 2.12-1.41-1.41-3.54 3.53 1.42 1.42-2.12 2.12-5.74-5.74L14.31 2zm-8.62 8.62l5.69 5.69-4.95 4.95H2v-4.43l3.69-6.21z"/></svg>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-name">勇者打怪</span>
+                        <span class="game-desc">像素战斗 · 回合闯关</span>
+                    </div>
+                </a>
+                <a class="game-card" href="MonsterWorld/index.html">
+                    <div class="game-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h18v14H3V5zm2 2v10h14V7H5zm2 2h3v3H7V9zm5 0h5v2h-5V9zm0 4h5v2h-5v-2z"/></svg>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-name">像素打怪地图</span>
+                        <span class="game-desc">地图探索 · 移动打怪</span>
+                    </div>
+                </a>
+                <a class="game-card" href="EnglishLearn/index.html">
+                    <div class="game-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v2H4V4zm2 4h12v2H6V8zm-2 4h16v2H4v-2zm2 4h8v2H6v-2zm-2 4h16v2H4v-2z"/></svg>
+                    </div>
+                    <div class="game-info">
+                        <span class="game-name">英语单词闯关</span>
+                        <span class="game-desc">外研版三年级上册 · 单词学习</span>
+                    </div>
+                </a>
+                <!-- 在此处添加更多游戏卡片 -->
+            </div>
+        </section>
+
+        <hr class="divider">
+        <footer class="footer">© 2026 会产生 · 保持热爱，奔赴山海</footer>
     </main>
 
     <script src="/js/script.js"></script>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语单词闯关 · 外研版三年级上册</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 开始界面 -->
+    <div id="start-screen" class="overlay-screen">
+        <div class="overlay-card">
+            <h1>英语单词闯关</h1>
+            <p>外研版三年级上册</p>
+            <p class="sub">6 个单元 + Welcome 总复习</p>
+            <div class="start-options">
+                <button class="mode-btn active" data-mode="en2cn">英译中</button>
+                <button class="mode-btn" data-mode="cn2en">中译英</button>
+                <button class="mode-btn" data-mode="fillblank">补字母</button>
+            </div>
+            <div class="unit-list" id="unit-list"></div>
+            <button id="start-btn" class="primary-btn">开始闯关</button>
+        </div>
+    </div>
+
+    <!-- 游戏界面 -->
+    <div class="game-shell hidden" id="game-shell">
+        <header class="game-header">
+            <h1 id="game-title">英语单词闯关</h1>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p class="progress-text" id="progress-text">0 / 10</p>
+        </header>
+
+        <main class="quiz-area">
+            <div class="question-card" id="question-card">
+                <div class="question-type" id="question-type-label">英译中</div>
+                <div class="question-text" id="question-text">welcome</div>
+                <div class="question-phonetic" id="question-phonetic" hidden>/ˈwelkəm/</div>
+                <div class="question-meaning" id="question-meaning" hidden></div>
+            </div>
+
+            <div class="options" id="options"></div>
+
+            <div class="feedback" id="feedback" hidden></div>
+
+            <div class="quiz-actions">
+                <button id="next-btn" class="primary-btn" hidden>下一题 →</button>
+                <button id="quit-btn" class="ghost-btn">退出</button>
+            </div>
+        </main>
+
+        <aside class="side-panel">
+            <div class="card">
+                <h2>本关统计</h2>
+                <p>✅ 答对：<strong id="correct-count">0</strong></p>
+                <p>❌ 答错：<strong id="wrong-count">0</strong></p>
+                <p>⭐ 正确率：<strong id="accuracy">0%</strong></p>
+            </div>
+            <div class="card">
+                <h2>当前关卡</h2>
+                <p id="current-unit-name">—</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- 结算界面 -->
+    <div id="result-screen" class="overlay-screen hidden">
+        <div class="overlay-card result-card">
+            <div class="result-emoji" id="result-emoji">🎉</div>
+            <h1 id="result-title">闯关完成！</h1>
+            <div class="result-stats">
+                <div><span>答对</span><strong id="result-correct">0</strong></div>
+                <div><span>答错</span><strong id="result-wrong">0</strong></div>
+                <div><span>正确率</span><strong id="result-accuracy">0%</strong></div>
+            </div>
+            <p id="result-tip"></p>
+            <div class="result-actions">
+                <button id="retry-btn" class="primary-btn">再来一次</button>
+                <button id="back-btn" class="ghost-btn">返回主菜单</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
