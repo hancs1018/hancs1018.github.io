@@ -16,8 +16,10 @@ const state = {
     },
     monsterIndex: 0,
     monster: null,
-    gameOver: false
+    gameOver: false,
+    busy: false
 };
+let turnTimer = null;
 
 const els = {
     playerHpBar: document.getElementById('player-hp-bar'),
@@ -70,28 +72,30 @@ function render() {
     els.monsterAtk.textContent = state.monster.atk;
     els.monsterReward.textContent = state.monster.reward;
 
-    els.attackBtn.disabled = state.gameOver;
-    els.healBtn.disabled = state.gameOver;
-    els.upgradeBtn.disabled = state.gameOver;
+    const locked = state.gameOver || state.busy;
+    els.attackBtn.disabled = locked;
+    els.healBtn.disabled = locked || state.player.potions <= 0 || state.player.hp === state.player.maxHp;
+    els.upgradeBtn.disabled = locked || state.player.gold < 30;
 
     updateBars();
 }
 
 function nextMonster() {
+    turnTimer = null;
     state.monsterIndex += 1;
-    if (state.monsterIndex >= monsters.length) {
-        state.gameOver = true;
-        addLog('你击败了所有怪物，成功通关！', true);
-        render();
-        return;
-    }
-
+    state.player.maxHp += 20;
+    state.player.hp = state.player.maxHp;
+    state.player.atk += 3;
+    state.player.potions += 1;
+    addLog('战后休整：生命上限 +20、恢复全部生命、攻击 +3、药水 +1。', true);
     state.monster = cloneMonster(state.monsterIndex);
-    addLog(`新的敌人出现了：${state.monster.name}` , true);
+    state.busy = false;
+    addLog(`新的敌人出现了：${state.monster.name}`, true);
     render();
 }
 
 function monsterAttack() {
+    turnTimer = null;
     if (state.monster.hp <= 0 || state.gameOver) return;
 
     state.player.hp -= state.monster.atk;
@@ -103,11 +107,13 @@ function monsterAttack() {
         addLog('你被怪物击败了，游戏结束。', true);
     }
 
+    state.busy = false;
     render();
 }
 
 function attack() {
-    if (state.gameOver) return;
+    if (state.gameOver || state.busy) return;
+    state.busy = true;
 
     const damage = state.player.atk + Math.floor(Math.random() * 6);
     state.monster.hp -= damage;
@@ -117,32 +123,43 @@ function attack() {
         state.monster.hp = 0;
         state.player.gold += state.monster.reward;
         addLog(`你击败了 ${state.monster.name}，获得 ${state.monster.reward} 金币！`, true);
+        if (state.monsterIndex === monsters.length - 1) {
+            state.gameOver = true;
+            state.busy = false;
+            addLog('你击败了所有怪物，成功通关！勇者凯旋！', true);
+        } else {
+            turnTimer = setTimeout(nextMonster, 500);
+        }
         render();
-        setTimeout(nextMonster, 500);
         return;
     }
 
     render();
-    setTimeout(monsterAttack, 350);
+    turnTimer = setTimeout(monsterAttack, 350);
 }
 
 function heal() {
-    if (state.gameOver) return;
+    if (state.gameOver || state.busy) return;
     if (state.player.potions <= 0) {
         addLog('你没有药水了。', true);
         return;
     }
+    if (state.player.hp === state.player.maxHp) {
+        addLog('生命已满，不需要使用药水。');
+        return;
+    }
 
+    state.busy = true;
     state.player.potions -= 1;
-    const healed = 28;
-    state.player.hp = Math.min(state.player.maxHp, state.player.hp + healed);
+    const healed = Math.min(50, state.player.maxHp - state.player.hp);
+    state.player.hp += healed;
     addLog(`你喝下药水，恢复了 ${healed} 点生命。`, true);
     render();
-    setTimeout(monsterAttack, 350);
+    turnTimer = setTimeout(monsterAttack, 350);
 }
 
 function upgrade() {
-    if (state.gameOver) return;
+    if (state.gameOver || state.busy) return;
     const cost = 30;
     if (state.player.gold < cost) {
         addLog('金币不够，无法升级攻击。', true);
@@ -156,6 +173,8 @@ function upgrade() {
 }
 
 function restart() {
+    clearTimeout(turnTimer);
+    turnTimer = null;
     state.player.maxHp = 100;
     state.player.hp = 100;
     state.player.atk = 12;
@@ -164,8 +183,10 @@ function restart() {
     state.monsterIndex = 0;
     state.monster = cloneMonster(0);
     state.gameOver = false;
+    state.busy = false;
     els.logList.innerHTML = '';
     addLog('新的冒险开始了，第一只怪物出现！', true);
+    addLog('击败怪物后会回满生命并提升属性。药水恢复 50 点生命；攒够 30 金币可升级攻击，升级不消耗回合。');
     render();
 }
 

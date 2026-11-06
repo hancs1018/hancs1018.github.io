@@ -304,10 +304,14 @@ function placeEntitiesRandomly(map, monsterLevels, unbeatableMonsterLevels, weap
 
 function createStageMap(stageIndex) {
     const config = stages[stageIndex];
+    const monsterLevels = [...config.monsterLevels];
+    // 每关按入场等级保留一只低四分之一和一只高三分之一的普通怪物。
+    monsterLevels[0] = Math.max(1, Math.floor(state.player.level * 3 / 4));
+    monsterLevels[monsterLevels.length - 1] = Math.ceil(state.player.level * 4 / 3);
 
     for (let attempt = 0; attempt < 200; attempt++) {
         const map = deepCopyLayout(stageIndex);
-        placeEntitiesRandomly(map, config.monsterLevels, config.unbeatableMonsterLevels, config.weaponLevels);
+        placeEntitiesRandomly(map, monsterLevels, config.unbeatableMonsterLevels, config.weaponLevels);
         if (simulateStageClear(map, config, state.player.level)) {
             return map;
         }
@@ -315,16 +319,16 @@ function createStageMap(stageIndex) {
 
     const fallbackMap = deepCopyLayout(stageIndex);
     const safeTiles = collectEmptyTiles(fallbackMap);
-    const normalTiles = safeTiles.slice(0, config.monsterLevels.length + config.weaponLevels.length);
-    const dangerTiles = safeTiles.slice(config.monsterLevels.length + config.weaponLevels.length);
+    const normalTiles = safeTiles.slice(0, monsterLevels.length + config.weaponLevels.length);
+    const dangerTiles = safeTiles.slice(monsterLevels.length + config.weaponLevels.length);
 
-    config.monsterLevels.forEach((level, index) => {
+    monsterLevels.forEach((level, index) => {
         const pos = normalTiles[index];
         fallbackMap[pos.y][pos.x] = `M${level}`;
     });
 
     config.weaponLevels.forEach((level, index) => {
-        const pos = normalTiles[config.monsterLevels.length + index];
+        const pos = normalTiles[monsterLevels.length + index];
         fallbackMap[pos.y][pos.x] = `W${level}`;
     });
 
